@@ -1,0 +1,21 @@
+
+{
+  "id": "./",
+  "name": "TOGETHER - Our Savings Journey",
+  "short_name": "TOGETHER",
+  "description": "Our little shared savings journey.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14121a",
+  "theme_color": "#e879a0",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

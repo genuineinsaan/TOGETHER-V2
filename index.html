@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TOGETHER ❤️ | Our Savings Journey</title>
+    <meta name="description" content="A little space for our shared savings journey.">
+    <meta name="theme-color" content="#7656d8">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Styles and JavaScript -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <h2>TOGETHER <span>♥</span></h2>
+            <p>OUR LITTLE SAVINGS SPACE</p>
+        </div>
+
+        <nav class="navigation">
+            <p class="nav-heading">OUR SPACE</p>
+
+            <button class="nav-item active" data-view="dashboard">
+                <span>⌂</span> Home
+            </button>
+
+            <button class="nav-item" data-view="together">
+                <span>♡</span> Together
+            </button>
+
+            <button class="nav-item" data-view="reports">
+                <span>▥</span> Reports
+            </button>
+
+            <p class="nav-heading">PERSONAL</p>
+
+            <button class="nav-item" data-view="account">
+                <span>◉</span> Account
+            </button>
+
+            <button class="nav-item" data-view="settings">
+                <span>⚙</span> Settings
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Made with ♥</p>
+            <small>Growing together, every day.</small>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button id="menu-toggle" class="icon-button" aria-label="Toggle navigation">☰</button>
+
+                <div>
+                    <h3 id="page-title">Home</h3>
+                    <p id="current-date">Loading date...</p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <button id="theme-toggle" class="icon-button" aria-label="Change theme">◐</button>
+            </div>
+        </header>
+
+        <!-- =====================================
+             HOME
+        ====================================== -->
+        <section class="page-view active" id="dashboard">
+
+            <div class="welcome-section home-welcome">
+                <div>
+                    <p class="eyebrow">A LITTLE PROGRESS, A BEAUTIFUL JOURNEY</p>
+                    <h1>TOGETHER <span>♥</span></h1>
+                    <p>Every little step brings us closer to our dreams.</p>
+                </div>
+            </div>
+
+            <!-- ONE MAIN BALANCE -->
+            <article class="hero-balance-card">
+                <div class="hero-balance-decoration">♥</div>
+                <p>OUR TOGETHER BALANCE</p>
+                <h2 id="home-together-balance">₹0</h2>
+                <small>Our shared savings, built one day at a time.</small>
+            </article>
+
+            <!-- SAVINGS JOURNEY GRAPH -->
+            <article class="content-card home-chart-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Our Savings Journey</h3>
+                        <p>Watch our savings grow over time.</p>
+                    </div>
+                    <span class="soft-tag">Our journey</span>
+                </div>
+
+                <div class="chart-container home-journey-chart">
+                    <canvas id="journey-chart"></canvas>
+                </div>
+            </article>
+
+            <!-- ONE SAVINGS MILESTONE -->
+            <article class="content-card milestone-section">
+                <div class="card-header">
+                    <div>
+                        <h3>Our Next Savings Milestone</h3>
+                        <p>One little goal at a time.</p>
+                    </div>
+                </div>
+
+                <div id="milestone-rings" class="milestone-grid"></div>
+            </article>
+
+            <!-- HOME HIGHLIGHTS -->
+            <div class="home-highlights-grid">
+
+                <article class="highlight-card">
+                    <div class="highlight-icon">♡</div>
+                    <p>Days since we started</p>
+                    <h3 id="days-since-start">0</h3>
+                    <small>Days of saving together</small>
+                </article>
+
+                <article class="highlight-card">
+                    <div class="highlight-icon">✧</div>
+                    <p>Next milestone</p>
+                    <h3 id="next-milestone">₹100</h3>
+                    <small id="milestone-remaining">Our next little goal</small>
+                </article>
+
+                <article class="highlight-card">
+                    <div class="highlight-icon">♡</div>
+                    <p>Total contributions</p>
+                    <h3 id="total-contributions">₹0</h3>
+                    <small>All recorded contributions</small>
+                </article>
+
+                <article class="highlight-card">
+                    <div class="highlight-icon">✦</div>
+                    <p>Savings streak</p>
+                    <h3 id="current-streak">0 days</h3>
+                    <small id="streak-caption">Keep the journey going</small>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =====================================
+             TOGETHER SAVINGS
+        ====================================== -->
+        <section class="page-view" id="together">
+
+            <div class="section-heading">
+                <p class="eyebrow">OUR SHARED JOURNEY</p>
+                <h1>Together Savings <span>♥</span></h1>
+                <p>Small savings today, bigger dreams tomorrow.</p>
+            </div>
+
+            <!-- SAVINGS SUMMARY -->
+            <div class="savings-summary-grid">
+
+                <article class="overview-card">
+                    <p>Total Contributions</p>
+                    <h3 id="together-total-contributions">₹0</h3>
+                </article>
+
+                <article class="overview-card">
+                    <p>Total Withdrawals</p>
+                    <h3 id="together-total-withdrawals">₹0</h3>
+                </article>
+
+                <article class="overview-card featured-overview-card">
+                    <p>Available Savings</p>
+                    <h3 id="available-savings">₹0</h3>
+                </article>
+
+            </div>
+
+            <!-- DAILY SAVINGS CHALLENGE -->
+            <article class="content-card savings-card">
+
+                <div class="card-header">
+                    <div>
+                        <h3>Daily Savings Challenge ♥</h3>
+                        <p>Our repeating 10-day savings cycle.</p>
+                    </div>
+                    <span class="soft-tag" id="cycle-day">Day --</span>
+                </div>
+
+                <div class="savings-info">
+                    <div>
+                        <span>Started on</span>
+                        <h3 id="savings-start-date">27 October 2026</h3>
+                    </div>
+
+                    <div>
+                        <span>Today's target</span>
+                        <h3 id="daily-target">₹0</h3>
+                    </div>
+
+                    <div>
+                        <span>Today's recorded</span>
+                        <h3 id="today-recorded">₹0</h3>
+                    </div>
+                </div>
+
+                <!-- TODAY'S SEPARATE CHECK-INS -->
+                <div class="contribution-box today-contribution-box">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Today's Check-in ♥</h3>
+                            <p>Both of us can mark our savings separately.</p>
+                        </div>
+                        <span class="soft-tag" id="today-cycle-day">Today's target</span>
+                    </div>
+
+                    <!-- MR CHECK-IN -->
+                    <div class="person-checkin-row">
+                        <div class="person-checkin-details">
+                            <strong id="mr-checkin-name">Mr.</strong>
+                            <small id="mr-checkin-amount">Today's amount: ₹0</small>
+                        </div>
+
+                        <label class="checkin-checkbox-label" for="mr-today-checkbox">
+                            <input type="checkbox" id="mr-today-checkbox">
+                            <span>Saved</span>
+                        </label>
+                    </div>
+
+                    <!-- MRS CHECK-IN -->
+                    <div class="person-checkin-row">
+                        <div class="person-checkin-details">
+                            <strong id="mrs-checkin-name">Mrs.</strong>
+                            <small id="mrs-checkin-amount">Today's amount: ₹0</small>
+                        </div>
+
+                        <label class="checkin-checkbox-label" for="mrs-today-checkbox">
+                            <input type="checkbox" id="mrs-today-checkbox">
+                            <span>Saved</span>
+                        </label>
+                    </div>
+
+                    <!-- TODAY'S SUMMARY -->
+                    <div class="daily-checkin-summary">
+                        <div>
+                            <span>Combined contribution</span>
+                            <h3 id="today-combined-contribution">₹0 / ₹0</h3>
+                        </div>
+
+                        <span id="today-checkin-status" class="soft-tag">Not completed</span>
+                    </div>
+
+                    <p id="checkin-form-status" class="form-status" aria-live="polite"></p>
+                </div>
+
+                <!-- UPDATE A PREVIOUS DATE -->
+                <div class="contribution-box previous-contribution-box">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Update Previous Contribution</h3>
+                            <p>Missed a day? Select that date to update the check-ins.</p>
+                        </div>
+                        <span class="soft-tag">Past records</span>
+                    </div>
+
+                    <div class="previous-date-selector">
+                        <div class="form-group">
+                            <label for="previous-contribution-date">Select previous date</label>
+                            <input type="date" id="previous-contribution-date">
+                        </div>
+
+                        <button type="button" class="primary-button" id="load-previous-date-button">
+                            Find Date
+                        </button>
+                    </div>
+
+                    <p id="previous-date-status" class="form-status" aria-live="polite"></p>
+
+                    <!-- PREVIOUS DATE CHECK-IN EDITOR -->
+                    <div id="previous-date-checkin-editor" class="previous-date-checkin-editor" hidden>
+
+                        <div class="previous-date-heading">
+                            <h3 id="previous-date-title">Previous Check-in</h3>
+                            <p id="previous-date-cycle-info">Select a date to view its savings target.</p>
+                        </div>
+
+                        <div class="person-checkin-row">
+                            <div class="person-checkin-details">
+                                <strong id="mr-previous-name">Mr.</strong>
+                                <small id="mr-previous-amount">Contribution: ₹0</small>
+                            </div>
+
+                            <label class="checkin-checkbox-label" for="mr-previous-checkbox">
+                                <input type="checkbox" id="mr-previous-checkbox">
+                                <span>Saved</span>
+                            </label>
+                        </div>
+
+                        <div class="person-checkin-row">
+                            <div class="person-checkin-details">
+                                <strong id="mrs-previous-name">Mrs.</strong>
+                                <small id="mrs-previous-amount">Contribution: ₹0</small>
+                            </div>
+
+                            <label class="checkin-checkbox-label" for="mrs-previous-checkbox">
+                                <input type="checkbox" id="mrs-previous-checkbox">
+                                <span>Saved</span>
+                            </label>
+                        </div>
+
+                        <div class="daily-checkin-summary">
+                            <div>
+                                <span>Updated combined contribution</span>
+                                <h3 id="previous-combined-contribution">₹0 / ₹0</h3>
+                            </div>
+
+                            <span id="previous-checkin-status" class="soft-tag">Not completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTRIBUTION HISTORY -->
+                <div class="history-section">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Savings Check-in History</h3>
+                            <p>Every recorded day, including partial contributions.</p>
+                        </div>
+                    </div>
+
+                    <div id="savings-history" class="history-list">
+                        <p class="empty-state">No contribution history yet.</p>
+                    </div>
+                </div>
+
+            </article>
+
+            <!-- WITHDRAWALS -->
+            <article class="content-card withdrawal-card">
+
+                <div class="card-header">
+                    <div>
+                        <h3>Withdrawals</h3>
+                        <p>Keep a record whenever money is withdrawn.</p>
+                    </div>
+                </div>
+
+                <form id="withdrawal-form" class="entry-form">
+
+                    <div class="form-group">
+                        <label for="withdrawal-date">Withdrawal date</label>
+                        <input type="date" id="withdrawal-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="withdrawal-amount">Amount (₹)</label>
+                        <input type="number" id="withdrawal-amount" min="0.01" step="0.01" placeholder="Enter amount" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="withdrawal-reason">Reason</label>
+                        <input type="text" id="withdrawal-reason" maxlength="100" placeholder="Why was it withdrawn?">
+                    </div>
+
+                    <button type="submit" class="primary-button">Record Withdrawal</button>
+                </form>
+
+                <p id="withdrawal-form-status" class="form-status" aria-live="polite"></p>
+
+                <div class="history-section">
+                    <div class="card-header">
+                        <h3>Withdrawal History</h3>
+                    </div>
+
+                    <div id="withdrawal-history" class="history-list">
+                        <p class="empty-state">No withdrawals recorded.</p>
+                    </div>
+                </div>
+
+            </article>
+
+        </section>
+
+        <!-- =====================================
+             REPORTS
+        ====================================== -->
+        <section class="page-view" id="reports">
+
+            <div class="section-heading">
+                <p class="eyebrow">OUR PROGRESS</p>
+                <h1>Savings Reports</h1>
+                <p>A simple view of how our shared savings have grown.</p>
+            </div>
+
+            <!-- SAVINGS GROWTH -->
+            <article class="content-card chart-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Savings Growth</h3>
+                        <p>Our cumulative recorded savings over time.</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="savings-chart"></canvas>
+                </div>
+            </article>
+
+            <!-- BAR CHART -->
+            <article class="content-card chart-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Daily Contributions</h3>
+                        <p>How much we saved each day.</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="savings-bar-chart"></canvas>
+                </div>
+            </article>
+
+            <!-- PIE CHART -->
+            <article class="content-card chart-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Contributions vs Withdrawals</h3>
+                        <p>A breakdown of our savings activity.</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="savings-pie-chart"></canvas>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- =====================================
+             ACCOUNT
+        ====================================== -->
+        <section class="page-view" id="account">
+
+            <div class="section-heading">
+                <p class="eyebrow">THE PEOPLE BEHIND OUR JOURNEY</p>
+                <h1>Our Account <span>♥</span></h1>
+                <p>A little space about the two people saving together.</p>
+            </div>
+
+            <article class="content-card account-card">
+
+                <div class="profile-editor-grid">
+
+                    <!-- FIRST PERSON -->
+                    <div class="profile-editor">
+
+                        <div class="profile-photo-wrapper">
+                            <img id="person-one-photo-preview" class="account-profile-photo" alt="First person's profile">
+                            <div id="person-one-photo-placeholder" class="account-profile-placeholder">♡</div>
+                        </div>
+
+                        <label for="person-one-photo" class="secondary-button">Choose Photo</label>
+                        <input type="file" id="person-one-photo" accept="image/*" hidden>
+
+                        <div class="form-group">
+                            <label for="person-one-name">First person's name</label>
+                            <input type="text" id="person-one-name" maxlength="40" placeholder="Enter name">
+                        </div>
+
+                    </div>
+
+                    <!-- SECOND PERSON -->
+                    <div class="profile-editor">
+
+                        <div class="profile-photo-wrapper">
+                            <img id="person-two-photo-preview" class="account-profile-photo" alt="Second person's profile">
+                            <div id="person-two-photo-placeholder" class="account-profile-placeholder">♡</div>
+                        </div>
+
+                        <label for="person-two-photo" class="secondary-button">Choose Photo</label>
+                        <input type="file" id="person-two-photo" accept="image/*" hidden>
+
+                        <div class="form-group">
+                            <label for="person-two-name">Second person's name</label>
+                            <input type="text" id="person-two-name" maxlength="40" placeholder="Enter name">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="account-details-divider"></div>
+
+                <div class="form-group">
+                    <label for="account-savings-start-date">Our savings journey started on</label>
+                    <input type="date" id="account-savings-start-date" value="2026-10-27">
+                    <small class="input-help">This date controls the daily savings challenge and its cycle.</small>
+                </div>
+
+                <div class="account-details-card">
+                    <span>Our little journey</span>
+                    <h3 id="account-journey-title">Two people. One shared goal. ♥</h3>
+                    <p id="account-journey-description">Saving together, one day at a time.</p>
+                </div>
+
+                <button type="button" class="primary-button" id="save-account-details">
+                    Save Account Details
+                </button>
+
+                <p id="account-save-status" class="form-status" aria-live="polite"></p>
+
+            </article>
+
+        </section>
+
+        <!-- =====================================
+             SETTINGS
+        ====================================== -->
+        <section class="page-view" id="settings">
+
+            <div class="section-heading">
+                <p class="eyebrow">MAKE IT YOURS</p>
+                <h1>Settings</h1>
+                <p>Manage your TOGETHER experience.</p>
+            </div>
+
+            <!-- APPEARANCE -->
+            <article class="content-card settings-card">
+
+                <div class="settings-heading">
+                    <span class="settings-icon">◐</span>
+                    <div>
+                        <h3>Appearance</h3>
+                        <p>Choose how TOGETHER looks.</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="theme-select">Application theme</label>
+                    <select id="theme-select">
+                        <option value="system">System Default</option>
+                        <option value="dark">Dark Mode</option>
+                        <option value="light">Light Mode</option>
+                    </select>
+                </div>
+
+            </article>
+
+            <!-- INSTALL APP -->
+            <article class="content-card settings-card">
+
+                <div class="settings-heading">
+                    <span class="settings-icon">▣</span>
+                    <div>
+                        <h3>Install TOGETHER</h3>
+                        <p>Add the app to your phone for an app-like experience.</p>
+                    </div>
+                </div>
+
+                <button type="button" class="primary-button" id="install-app-button">
+                    Install TOGETHER
+                </button>
+
+                <p id="install-app-status" class="form-status" aria-live="polite">
+                    Installation availability will be checked by your browser.
+                </p>
+
+            </article>
+
+            <!-- DAILY REMINDER -->
+            <article class="content-card settings-card">
+
+                <div class="settings-heading">
+                    <span class="settings-icon">♡</span>
+                    <div>
+                        <h3>Daily Contribution Reminder</h3>
+                        <p>Get a reminder if today's contribution is still missing.</p>
+                    </div>
+                </div>
+
+                <label class="setting-toggle-row" for="daily-reminder-toggle">
+                    <span>
+                        <strong>Enable daily reminder</strong>
+                        <small>Reminder time: 11:30 PM</small>
+                    </span>
+                    <input type="checkbox" id="daily-reminder-toggle">
+                </label>
+
+                <p class="notification-note">
+                    Notifications require your permission. Reliable reminders when the app is fully closed may require a push-notification service.
+                </p>
+
+                <button type="button" class="secondary-button" id="enable-notifications-button">
+                    Enable Notifications
+                </button>
+
+                <p id="notification-status" class="form-status" aria-live="polite"></p>
+
+            </article>
+
+            <!-- MILESTONE NOTIFICATIONS -->
+            <article class="content-card settings-card">
+
+                <div class="settings-heading">
+                    <span class="settings-icon">✧</span>
+                    <div>
+                        <h3>Milestone Celebrations</h3>
+                        <p>Celebrate when your shared savings reach a milestone.</p>
+                    </div>
+                </div>
+
+                <label class="setting-toggle-row" for="milestone-notification-toggle">
+                    <span>
+                        <strong>Milestone notifications</strong>
+                        <small>Celebrate savings goals as you reach them.</small>
+                    </span>
+                    <input type="checkbox" id="milestone-notification-toggle">
+                </label>
+
+            </article>
+
+            <div class="settings-footer">
+                <p>TOGETHER ♥</p>
+                <small>Our little savings journey.</small>
+            </div>
+
+        </section>
+
+        <!-- MOBILE NAVIGATION -->
+        <nav class="mobile-navigation" aria-label="Main navigation">
+
+            <button data-view="dashboard" class="mobile-nav-item active">
+                <span>⌂</span>
+                <small>Home</small>
+            </button>
+
+            <button data-view="together" class="mobile-nav-item">
+                <span>♡</span>
+                <small>Together</small>
+            </button>
+
+            <button data-view="reports" class="mobile-nav-item">
+                <span>▥</span>
+                <small>Reports</small>
+            </button>
+
+            <button data-view="account" class="mobile-nav-item">
+                <span>◉</span>
+                <small>Account</small>
+            </button>
+
+            <button data-view="settings" class="mobile-nav-item">
+                <span>⚙</span>
+                <small>Settings</small>
+            </button>
+
+        </nav>
+
+    </main>
+</div>
+</body>
+</html>
